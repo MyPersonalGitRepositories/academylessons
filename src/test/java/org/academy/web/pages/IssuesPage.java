@@ -1,7 +1,7 @@
 package org.academy.web.pages;
 
 import lombok.extern.slf4j.Slf4j;
-import org.academy.MainConfig;
+import org.academy.TestConfigurations;
 import org.academy.web.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +18,7 @@ public class IssuesPage extends AbstractPage {
 
     public Issue21420Page clickOnIssue21420() {
         issue21420.click();
-        return new Issue21420Page(webDriver, true, MainConfig.getIssue21420Url());
+        return new Issue21420Page(webDriver, true, TestConfigurations.getIssue21420Url());
     }
 }
 

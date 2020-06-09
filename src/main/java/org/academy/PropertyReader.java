@@ -8,18 +8,19 @@ import java.util.Objects;
 import java.util.Properties;
 
 @Slf4j
-public class ConfigurationReader {
+public class PropertyReader {
     {
         copyValues(fromPath("config.properties"), true);
+        copyValues(fromPath("resources.properties"), true);
     }
 
     private static Properties properties = new Properties();
-    private static final ConfigurationReader INSTANCE = new ConfigurationReader();
+    private static final PropertyReader INSTANCE = new PropertyReader();
 
-    private ConfigurationReader() {
+    private PropertyReader() {
     }
 
-    public static ConfigurationReader get() {
+    public static PropertyReader get() {
         return INSTANCE;
     }
 
@@ -47,7 +48,7 @@ public class ConfigurationReader {
         Properties properties = new Properties();
         String file;
         try {
-            file = Objects.requireNonNull(ConfigurationReader.class.getClassLoader().getResource(path)).getFile();
+            file = Objects.requireNonNull(PropertyReader.class.getClassLoader().getResource(path)).getFile();
             properties.load(new FileInputStream(new File(file)));
         } catch (Exception e) {
             throw new RuntimeException("Cannot find properties file: env.properties", e);

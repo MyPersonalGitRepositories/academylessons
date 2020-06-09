@@ -1,7 +1,7 @@
 package org.academy.web.tests;
 
-import org.academy.MainConfig;
-import org.academy.web.AbstractWebDriver;
+import org.academy.TestConfigurations;
+import org.academy.utils.web.AbstractWebDriver;
 import org.academy.web.pages.LoginPage;
 import org.academy.web.pages.MainPage;
 import org.testng.annotations.BeforeMethod;
@@ -20,7 +20,7 @@ public class LoginTest extends AbstractWebDriver {
 
     @BeforeMethod(alwaysRun = true)
     public void precondition() {
-        mainPage = new MainPage(webDriver, true, MainConfig.getUrl());
+        mainPage = new MainPage(webDriver, true, TestConfigurations.getUrl());
         loginPage = mainPage.clickOnSignIn();
     }
 
@@ -38,8 +38,8 @@ public class LoginTest extends AbstractWebDriver {
 
     @Test
     public void positiveLoginTest() {
-        loginPage.fillLoginField(MainConfig.getLogin());
-        loginPage.fillPassField(MainConfig.getPassword());
+        loginPage.fillLoginField(TestConfigurations.getLogin());
+        loginPage.fillPassField(TestConfigurations.getPassword());
         loginPage.clickOnSubmit();
     }
 

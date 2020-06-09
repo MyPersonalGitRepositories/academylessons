@@ -1,8 +1,8 @@
 package org.academy.web.pages;
 
 import org.academy.web.AbstractPage;
-import org.academy.web.WebHelpers;
-import org.academy.web.WebWaiters;
+import org.academy.utils.web.WebHelpers;
+import org.academy.utils.web.WebWaiters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,10 +35,10 @@ public class KanbanBoardPage extends AbstractPage {
         return this;
     }
 
-    public PullPage goToPullPage(){
+    public Pull15Page goToPull15Page(){
         WebWaiters.waitUntilElementIsClickable(webDriver, detailsExternalLink);
         detailsExternalLink.click();
         WebHelpers.switchToLastOpenedTab(webDriver);
-        return new PullPage(webDriver);
+        return new Pull15Page(webDriver);
     }
 }

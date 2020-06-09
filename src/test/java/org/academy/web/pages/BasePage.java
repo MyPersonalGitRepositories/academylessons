@@ -1,6 +1,6 @@
 package org.academy.web.pages;
 
-import org.academy.MainConfig;
+import org.academy.TestConfigurations;
 import org.academy.web.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,14 +30,24 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//a[(@href='/alhonchar/academylessons')]")
     private List<WebElement> repositoryLinks;
 
+    @FindBy(xpath = "//div[@id='dashboard-repos-container']//div[@class='width-full text-bold']")
+    private WebElement repositoryLink;
+
+    @FindBy(xpath = "//a[@class='btn btn-sm empty-icon float-right BtnGroup-item']")
+    private WebElement findFileButton;
+
+    @FindBy(xpath = "//a[contains(text(),'Explore')]")
+    private WebElement exploreLink;
+
+
     public IssuesPage clickOnIssuesLink() {
         issuesLink.click();
-        return new IssuesPage(webDriver, true, MainConfig.getIssuesUrl());
+        return new IssuesPage(webDriver, true, TestConfigurations.getIssuesUrl());
     }
 
     private WebElement toRepositoryLink = webDriver.findElement(By.xpath("//div[@id='dashboard-repos-container']"
             + "//span[@class='css-truncate css-truncate-target'][contains(text(),'"
-            + MainConfig.getParam("repository") + "')]"));
+            + TestConfigurations.getParam("repository") + "')]"));
 
 
     public RepositoryPage clickOnAcademyLessonsLink() {
@@ -55,10 +65,6 @@ public class BasePage extends AbstractPage {
         return new MarketplacePage(webDriver);
     }
 
-    @FindBy(xpath = "//div[@id='dashboard-repos-container']//div[@class='width-full text-bold']")
-    private WebElement repositoryLink;
-    @FindBy(xpath = "//a[@class='btn btn-sm empty-icon float-right BtnGroup-item']")
-    private WebElement findFileButton;
 
     public CodePage clickOnRepositoryLink() {
         repositoryLink.click();
@@ -70,8 +76,6 @@ public class BasePage extends AbstractPage {
         return new CodePage(webDriver);
     }
 
-    @FindBy(xpath = "//a[contains(text(),'Explore')]")
-    private WebElement exploreLink;
 
     public ExplorePage clickOnExploreLink() {
         exploreLink.click();

@@ -1,8 +1,8 @@
 package org.academy.web.tests;
 
 import lombok.extern.slf4j.Slf4j;
-import org.academy.MainConfig;
-import org.academy.web.AbstractWebDriver;
+import org.academy.TestConfigurations;
+import org.academy.utils.web.AbstractWebDriver;
 import org.academy.web.pages.BasePage;
 import org.academy.web.pages.MainPage;
 import org.testng.annotations.BeforeMethod;
@@ -15,10 +15,10 @@ public class GetThreeCommitTest extends AbstractWebDriver {
 
     @BeforeMethod(alwaysRun = true)
     public void precondition() {
-        MainPage mainPage = new MainPage(webDriver, true, MainConfig.getUrl());
+        MainPage mainPage = new MainPage(webDriver, true, TestConfigurations.getUrl());
         mainPage.clickOnSignIn()
-                .fillLoginField(MainConfig.getLogin())
-                .fillPassField(MainConfig.getPassword())
+                .fillLoginField(TestConfigurations.getLogin())
+                .fillPassField(TestConfigurations.getPassword())
                 .clickOnSubmit();
         basePage = new BasePage(webDriver);
     }

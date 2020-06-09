@@ -1,11 +1,10 @@
 package org.academy.web.tests;
 
 import lombok.extern.slf4j.Slf4j;
-import org.academy.web.AbstractWebDriver;
-import org.academy.web.WebHelpers;
+import org.academy.utils.web.AbstractWebDriver;
+import org.academy.utils.web.WebHelpers;
 import org.academy.web.pages.*;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -51,28 +50,5 @@ public class LabelTest extends AbstractWebDriver {
         log.info("Check whether label has been deleted");
         WebHelpers.refreshPage(webDriver);
     }
-
-    @DataProvider(name = "labels values form provider")
-    public Object[][] dataProviderAuthUserType() {
-        return new Object[][]{
-                {" ", "text12345"},
-                {"  ", "  "},
-                {" ", "some text"},
-        };
-    }
-
-    @Test(dataProvider = "labels values form provider", priority = 3)
-    public void negativeAddLabelTest(String title, String description) {
-        labelsPage
-                .clickOnNewLabelBtn()
-                .fillLabelTitle(title)
-                .fillLabelDesc(description)
-                .clickOnCreateBtn();
-        String errorMessage = labelsPage.getErrorMessage();
-        labelsPage.clickOnCancelBtn();
-        assertThat(errorMessage).isEqualTo("Name can't be blank");
-    }
-
-
 
 }

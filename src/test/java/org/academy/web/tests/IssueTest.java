@@ -1,8 +1,8 @@
 package org.academy.web.tests;
 
 import lombok.extern.slf4j.Slf4j;
-import org.academy.MainConfig;
-import org.academy.web.AbstractWebDriver;
+import org.academy.TestConfigurations;
+import org.academy.utils.web.AbstractWebDriver;
 import org.academy.web.pages.BasePage;
 import org.academy.web.pages.IssuesInRepoPage;
 import org.academy.web.pages.MainPage;
@@ -23,7 +23,7 @@ public class IssueTest extends AbstractWebDriver {
 
     @BeforeClass
     private void login() {
-        mainPage = new MainPage(webDriver, true, MainConfig.getUrl());
+        mainPage = new MainPage(webDriver, true, TestConfigurations.getUrl());
         log.info("Start 'IssueTest'");
         log.info("trying to login into github account");
         basePage = mainPage
@@ -76,7 +76,7 @@ public class IssueTest extends AbstractWebDriver {
 
     @AfterMethod
     private void afterMethod() {
-        webDriver.get(MainConfig.getUrl());
+        webDriver.get(TestConfigurations.getUrl());
         log.info("returned to the mainPage");
     }
 }

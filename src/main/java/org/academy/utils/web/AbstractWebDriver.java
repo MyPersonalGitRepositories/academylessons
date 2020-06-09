@@ -1,4 +1,4 @@
-package org.academy.web;
+package org.academy.utils.web;
 
 import org.academy.tools.TestNgListener;
 import org.openqa.selenium.WebDriver;

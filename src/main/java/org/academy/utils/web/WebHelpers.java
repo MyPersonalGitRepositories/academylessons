@@ -1,12 +1,10 @@
-package org.academy.web;
+package org.academy.utils.web;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class WebHelpers {
 
@@ -43,7 +41,18 @@ public class WebHelpers {
 		webDriver.navigate().refresh();
 	}
 
+	public static void deleteCookieByName(String name, WebDriver driver){
+		Cookie cookie = driver.manage().getCookies().stream().filter(x->x.getName().equals(name)).findFirst().get();
+		if(cookie!=null){
+			driver.manage().deleteCookie(cookie);
+		}
+		else {
+			driver.manage().deleteAllCookies();
+		}
+	}
+
 	public static void openNewBlankBrowserTab(WebDriver driver) {
 		((JavascriptExecutor)driver).executeScript("window.open();");
 	}
+
 }

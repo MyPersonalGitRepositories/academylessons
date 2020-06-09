@@ -1,7 +1,7 @@
 package org.academy.web.pages;
 
 import org.academy.web.AbstractPage;
-import org.academy.web.WebWaiters;
+import org.academy.utils.web.WebWaiters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
