@@ -9,4 +9,9 @@ public class Resources {
     public static String getPullRequests() {
         return read("pull_requests");
     }
+
+    public static String getForks() {
+        return read("forks");
+    }
+
 }

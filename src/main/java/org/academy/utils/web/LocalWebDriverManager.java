@@ -34,7 +34,7 @@ public class LocalWebDriverManager {
 
                 chromeWebDriver.manage().window().maximize();
                 return chromeWebDriver;
-            case "chrome_remote":
+            case "chrome_remote_selenoid":
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName("chrome");
                 capabilities.setVersion("81.0");
@@ -53,7 +53,7 @@ public class LocalWebDriverManager {
                 driver.manage().timeouts().implicitlyWait(40000, TimeUnit.MILLISECONDS);
                 driver.manage().window().maximize();
                 return driver;
-            case "remote":
+            case "chrome_remote_selenium":
                 DesiredCapabilities caps = DesiredCapabilities.chrome();
                 RemoteWebDriver wdriver = null;
                 try {
