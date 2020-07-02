@@ -1,7 +1,7 @@
 package org.academy.web.pages;
 
-import org.academy.web.AbstractPage;
 import org.academy.utils.web.WebWaiters;
+import org.academy.web.AbstractPage;
 import org.academy.web.pages.wiki.WikiPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +31,15 @@ public class RepositoryPage extends AbstractPage {
 
     @FindBy(linkText ="Settings")
     private WebElement settingsLink;
+
+    @FindBy(xpath = "//span[contains(text(),'Projects')]")
+    private WebElement projectsLink;
+
+    public ProjectsPage clickOnProjectsLink() {
+        WebWaiters.waitUntilElementIsClickable(webDriver, projectsLink);
+        projectsLink.click();
+        return new ProjectsPage(webDriver);
+    }
 
     public PullPage clickOnPullRequestsTab() {
         wait.until(ExpectedConditions.elementToBeClickable(pullRequestsTab)).click();

@@ -14,4 +14,8 @@ public class Resources {
         return read("forks");
     }
 
+    public static String getProjects() {
+        return read("projects");
+    }
+
 }

@@ -27,7 +27,7 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//a[@class='js-selected-navigation-item Header-link py-lg-3 d-inline-block'][contains(text(), 'Marketplace')]")
     private WebElement marketplaceBtn;
 
-    @FindBy(xpath = "//a[(@href='/alhonchar/academylessons')]")
+    @FindBy(xpath = "//a[(@href='/maksym-pidlisnyi/academylessons')]")
     private List<WebElement> repositoryLinks;
 
     @FindBy(xpath = "//div[@id='dashboard-repos-container']//div[@class='width-full text-bold']")
@@ -46,7 +46,8 @@ public class BasePage extends AbstractPage {
     }
 
     private WebElement toRepositoryLink = webDriver.findElement(By.xpath("//div[@id='dashboard-repos-container']"
-            + "//span[@class='css-truncate css-truncate-target'][contains(text(),'"
+            + "//li[@class='public fork no-description']//span[@class='css-truncate css-truncate-target']"
+            + "[contains(text(),'"
             + TestConfigurations.getParam("repository") + "')]"));
 
 

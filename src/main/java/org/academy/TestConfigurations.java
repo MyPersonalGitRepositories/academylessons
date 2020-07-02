@@ -80,4 +80,8 @@ public class TestConfigurations {
     public static String getApiToken() {
         return read("api_token");
     }
+
+    public static String getProject() {
+        return read("project");
+    }
 }
