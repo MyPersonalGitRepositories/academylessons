@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class ProjectsPage extends AbstractPage {
     public ProjectsPage(WebDriver webDriver) {
         super(webDriver, false);
@@ -14,6 +16,8 @@ public class ProjectsPage extends AbstractPage {
 
     @FindBy(xpath = "//a[@class='btn-link selected']")
     private WebElement projectAmount;
+    @FindBy(xpath = "//a[@class='link-gray-dark mr-1']")
+    private List<WebElement> projectNames;
 
     private WebElement projectDropDown = webDriver.findElement(
             By.xpath("//div[@id='projects-results']//div[@data-filter-value='"
@@ -42,6 +46,14 @@ public class ProjectsPage extends AbstractPage {
 
     public String getProjectsAmount() {
         return projectAmount.getText();
+    }
+
+    public boolean isExist(String name) {
+        for (WebElement el : projectNames) {
+            if (el.getText().equals(name))
+                return true;
+        }
+        return false;
     }
 
 }

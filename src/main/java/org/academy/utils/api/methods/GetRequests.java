@@ -9,6 +9,8 @@ import org.academy.TestConfigurations;
 import org.academy.utils.api.waiters.ApiWaiter;
 import org.academy.utils.api.waiters.ValidateResponseWaiter;
 
+import java.util.Base64;
+
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GetRequests {
     private ApiWaiter apiWaiter = new ApiWaiter();
 
-    public Response withToken(String token, int responseCode, String resources) {
+    public Response withToken(String encryptedToken, int responseCode, String resources) {
+        String token = new String(Base64.getDecoder().decode(encryptedToken));
         ValidateResponseWaiter responseWaiter = () -> {
             RestAssured.baseURI = TestConfigurations.getApiUri();
             return given()

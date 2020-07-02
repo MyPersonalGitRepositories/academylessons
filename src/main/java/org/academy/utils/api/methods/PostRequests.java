@@ -10,6 +10,7 @@ import org.academy.utils.api.waiters.ApiWaiter;
 import org.academy.utils.api.waiters.ValidateResponseWaiter;
 
 import java.io.File;
+import java.util.Base64;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +21,8 @@ public class PostRequests {
     private ApiWaiter apiWaiter = new ApiWaiter();
     File file = new File("src/main/resources/project.json");
 
-    public Response withToken(String token, int responseCode, String resources) {
+    public Response withToken(String encryptedToken, int responseCode, String resources) {
+        String token = new String(Base64.getDecoder().decode(encryptedToken));
         ValidateResponseWaiter responseWaiter = () -> {
             RestAssured.baseURI = TestConfigurations.getApiUri();
             return given()

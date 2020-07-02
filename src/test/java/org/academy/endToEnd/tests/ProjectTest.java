@@ -1,5 +1,6 @@
 package org.academy.endToEnd.tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.academy.TestConfigurations;
 import org.academy.api.requests.ProjectRequests;
 import org.academy.utils.web.AbstractWebDriver;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
+@Slf4j
 public class ProjectTest extends AbstractWebDriver {
 
     private ProjectRequests requests;
@@ -23,18 +25,23 @@ public class ProjectTest extends AbstractWebDriver {
         requests = new ProjectRequests();
         loginPage = new LoginPage(webDriver, true);
         basePage = loginPage.login();
+        log.info("Logged in");
     }
 
     @Test
     public void createProjectTest() {
         requests.createProject(TestConfigurations.getApiToken(), 201);
+        log.info("Project has been created");
 
         repositoryPage = basePage.goToRepositoryLink();
         projectsPage = repositoryPage.clickOnProjectsLink();
-        assertThat(projectsPage.getProjectsAmount()).isEqualTo("1 Open");
-        projectEditPage = projectsPage.clickOnDropdown().clickOnEdit();
+        log.info("Check whether new project exists");
+        assertThat(projectsPage.isExist(TestConfigurations.getProject())).isTrue();
+        projectEditPage = projectsPage
+                .clickOnDropdown()
+                .clickOnEdit();
         projectEditPage.deleteProject();
-
+        log.info("Project has been deleted");
     }
 
 }
