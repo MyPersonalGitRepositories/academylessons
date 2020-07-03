@@ -14,6 +14,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class ProjectTest extends AbstractWebDriver {
 
     private ProjectRequests requests;
+    private MainPage mainPage;
     private BasePage basePage;
     private LoginPage loginPage;
     private RepositoryPage repositoryPage;
@@ -23,7 +24,8 @@ public class ProjectTest extends AbstractWebDriver {
     @BeforeMethod(alwaysRun = true)
     public void precondition() {
         requests = new ProjectRequests();
-        loginPage = new LoginPage(webDriver, true);
+        mainPage = new MainPage(webDriver, true, TestConfigurations.getUrl());
+        loginPage = mainPage.clickOnSignIn();
         basePage = loginPage.login();
         log.info("Logged in");
     }
