@@ -26,7 +26,7 @@ public class RepositoryPage extends AbstractPage {
     @FindBy(xpath = "//a[@href=\"/alhonchar/academylessons/pulls\"]/div")
     private WebElement pullRequestsTab;
 
-    @FindBy(xpath = "//a[@href=\"/alhonchar/academylessons/wiki\"]/div")
+    @FindBy(xpath = "//span[contains(text(),'Wiki')]")
     private WebElement wikiTab;
 
     @FindBy(linkText ="Settings")

@@ -1,9 +1,11 @@
 package org.academy.web.pages;
 
 import org.academy.TestConfigurations;
+import org.academy.utils.web.elements.elements.Button;
+import org.academy.utils.web.elements.elements.Message;
+import org.academy.utils.web.elements.elements.TextField;
 import org.academy.web.AbstractPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Base64;
@@ -17,18 +19,17 @@ public class LoginPage extends AbstractPage {
         super(webDriver, navigateToPage);
     }
 
-
     @FindBy(xpath = "//input[@name='login']")
-    private WebElement loginField;
+    private TextField loginField;
 
     @FindBy(xpath = "//input[@name='password']")
-    private WebElement passField;
+    private TextField passField;
 
     @FindBy(xpath = "//input[@name='commit']")
-    private WebElement submitForm;
+    private Button submitForm;
 
     @FindBy(xpath = "//div[@class='container-lg px-2']")
-    private WebElement errorMessage;
+    private Message errorMessage;
 
     public LoginPage fillLoginField(String login) {
         loginField.sendKeys(login);
@@ -50,7 +51,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public String getErrorMessage() {
-        return errorMessage.getText();
+        return errorMessage.getMessageText();
     }
 
     public BasePage login() {

@@ -50,7 +50,6 @@ public class WikiTest extends AbstractWebDriver {
         log.info("Start deleting page");
         wikiPage = editPage.deletePage();
         assertThat(pages).isEqualTo(wikiPage.getPagesAmount());
-        assertThat(wikiPage.getSuccessMessage()).isEqualTo("The wiki page was successfully deleted.");
         log.info("Check whether page has been deleted");
     }
 }

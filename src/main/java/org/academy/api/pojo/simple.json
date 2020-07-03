@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "case_id": 1111,
+      "status_id": 2,
+      "comment": "",
+      "elapsed": "",
+      "defects": "",
+      "version": "",
+      "custom_step_results": [
+        {
+          "content": "Some content 1",
+          "expected": "exp1",
+          "actual": "actual1",
+          "status_id": 1
+        },
+        {
+          "content": "Some content 2",
+          "expected": "exp2",
+          "actual": "actual2",
+          "status_id": 2
+        }
+      ]
+    }
+  ]
+}
