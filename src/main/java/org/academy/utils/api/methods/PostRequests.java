@@ -9,9 +9,6 @@ import org.academy.TestConfigurations;
 import org.academy.utils.api.waiters.ApiWaiter;
 import org.academy.utils.api.waiters.ValidateResponseWaiter;
 
-import java.io.File;
-import java.util.Base64;
-
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,10 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PostRequests {
 
     private ApiWaiter apiWaiter = new ApiWaiter();
-    File file = new File("src/main/resources/project.json");
 
-    public Response withToken(String encryptedToken, int responseCode, String resources) {
-        String token = new String(Base64.getDecoder().decode(encryptedToken));
+    public Response withToken(String token, String body, int responseCode, String resources) {
         ValidateResponseWaiter responseWaiter = () -> {
             RestAssured.baseURI = TestConfigurations.getApiUri();
             return given()
@@ -30,7 +25,7 @@ public class PostRequests {
                     .auth().oauth2(token)
                     .contentType(ContentType.JSON)
                     .header("Accept", "application/vnd.github.inertia-preview+json")
-                    .body(file)
+                    .body(body)
                     .when()
                     .post(resources)
                     .then();

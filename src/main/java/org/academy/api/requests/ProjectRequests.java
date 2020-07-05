@@ -7,8 +7,8 @@ import org.academy.api.Resources;
 @Slf4j
 public class ProjectRequests extends AbstractRequests {
 
-    public void createProject(String token, int responseCode) {
-        Response response = postRequests.withToken(token, responseCode, Resources.getProjects());
+    public void createProject(String token, String body, int responseCode) {
+        Response response = postRequests.withToken(token, body, responseCode, Resources.getProjects());
         log.info(response.asString());
 //        log.info();
     }

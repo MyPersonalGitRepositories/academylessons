@@ -1,7 +1,10 @@
 package org.academy.endToEnd.tests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.academy.TestConfigurations;
+import org.academy.api.pojo.Project;
 import org.academy.api.requests.ProjectRequests;
 import org.academy.utils.web.AbstractWebDriver;
 import org.academy.web.pages.*;
@@ -32,13 +35,23 @@ public class ProjectTest extends AbstractWebDriver {
 
     @Test
     public void createProjectTest() {
-        requests.createProject(TestConfigurations.getApiToken(), 201);
+        String projectName = TestConfigurations.getProject();
+        String projectBody = TestConfigurations.getProjectBody();
+        Project project = new Project(projectName, projectBody);
+        ObjectMapper mapper = new ObjectMapper();
+        String body = null;
+        try {
+            body = mapper.writeValueAsString(project);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        requests.createProject(TestConfigurations.getApiToken(), body, 201);
         log.info("Project has been created");
 
         repositoryPage = basePage.goToRepositoryLink();
         projectsPage = repositoryPage.clickOnProjectsLink();
         log.info("Check whether new project exists");
-        assertThat(projectsPage.isExist(TestConfigurations.getProject())).isTrue();
+        assertThat(projectsPage.isExist(projectName)).isTrue();
         projectEditPage = projectsPage
                 .clickOnDropdown()
                 .clickOnEdit();

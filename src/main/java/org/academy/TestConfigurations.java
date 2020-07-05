@@ -1,5 +1,7 @@
 package org.academy;
 
+import java.util.Base64;
+
 public class TestConfigurations {
 
     private static String read(String value) {
@@ -15,11 +17,11 @@ public class TestConfigurations {
     }
 
     public static String getPassword() {
-        return read("pass");
+        return new String(Base64.getDecoder().decode(read("pass")));
     }
 
     public static String getLogin() {
-        return read("login");
+        return new String(Base64.getDecoder().decode(read("login")));
     }
 
     public static String getPageUrl(String name) {
@@ -78,10 +80,14 @@ public class TestConfigurations {
     }
 
     public static String getApiToken() {
-        return read("api_token");
+        return new String(Base64.getDecoder().decode(read("api_token")));
     }
 
     public static String getProject() {
         return read("project");
+    }
+
+    public static String getProjectBody() {
+        return read("projectBody");
     }
 }
